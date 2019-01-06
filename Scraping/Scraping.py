@@ -2,6 +2,7 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+from selenium.common import exceptions 
 
 import time
 import requests
@@ -34,15 +35,15 @@ def Init_page(lien):
         if (likns.count(str(href)) == 0 ) & (href != lien) & (len(href) > 90) & (href.find('#REVIEWS') < 0): 
             likns.append(href)
             # print (href)
-        if len(href) == 86:
-            PageSuivants.append(href)
+        # if len(href) == 86:
+        #     PageSuivants.append(href)
 
     driver.quit()
     return likns
 
-with open('Donne.csv', 'w', newline='') as csvfile:
+with open('Donnes.csv', 'w', newline='') as csvfile:
     spamwriter = csv.writer(csvfile, quotechar=' ', quoting=csv.QUOTE_ALL)
-    # spamwriter.writerow(['Prix', 'Nombre d\'utilisateur','Excellent', 'Très bon','Moyen','Médiocre','Horrible', 'Nombre des étoiles d’hôtel'])
+    # spamwriter.writerow(['Nom de l\'hôtel', 'Localisation', 'Nombre des étoiles d’hôtel' ,'Prix', 'Nombre d\'utilisateur','Excellent', 'Très bon','Moyen','Médiocre','Horrible','servies proposer', 'classe'])
 
 def Scrape_pages(url):
     driver = download_pageSOUP(url)
@@ -143,18 +144,28 @@ def Scrape_pages(url):
     else:
         catprix = 3
 
-    with open('Donne.csv', 'a', newline='') as csvfile:
+    with open('Donnes.csv', 'a', newline='') as csvfile:
         spamwriter = csv.writer(csvfile)
-        spamwriter.writerow([prixf[0], nb_uti, suprAvis[0], suprAvis[1], suprAvis[2], suprAvis[3], suprAvis[4], nb_etoiles, catprix])
+        # spamwriter.writerow([h1.string,loca, nb_etoiles, prixf[0], nb_uti, suprAvis[0], suprAvis[1], suprAvis[2], suprAvis[3], suprAvis[4], infogenral,catprix])
+        spamwriter.writerow([h1.string,loca, prixf[0], nb_uti, suprAvis[0], suprAvis[1], suprAvis[2], suprAvis[3], suprAvis[4], nb_etoiles,catprix])
 
 if __name__ == "__main__":
     lien1 = "https://www.tripadvisor.fr/Hotels-g187147-Paris_Ile_de_France-Hotels.html#"
-    PageSuivants.insert(0, lien1)
-    for lienI in PageSuivants:
-        print(lienI)
-        for fre in Init_page(lienI):
-            print(fre)
-            Scrape_pages(fre)
+    lienfixP1 = "https://www.tripadvisor.fr/Hotels-g187147-oa" 
+    lienfixP2 = "-Paris_Ile_de_France-Hotels.html"
+    PageSuivants.append(lien1)
+    for x in range(1,50):
+        newliens = lienfixP1 + str(30*x) + lienfixP2
+        PageSuivants.append(newliens)
 
-        print(PageSuivants)
+    # print(PageSuivants)
+    for lienI in PageSuivants: 
+        try:  
+            for fre in Init_page(lienI):
+                print(fre)
+                Scrape_pages(fre)
+
+        except exceptions.StaleElementReferenceException:  
+            pass  
+
 
