@@ -3,9 +3,9 @@
 <br>Elle est développée par de nombreux contributeurs notamment dans le monde académique par des instituts français d’enseignement supérieur et de re- cherche comme Inria et Télécom ParisTech
 Nous somme basé sur ces Statistique suivant :</br>
 <ul>
-	<li>- Les prix</li>
-	<li>- Les avis</li>
-	<li>- Nombre des étoiles d’hôtel</li>
+	<li>Les prix</li>
+	<li>Les avis</li>
+	<li>Nombre des étoiles d’hôtel</li>
 </ul>
 	
 	
