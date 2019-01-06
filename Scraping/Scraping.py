@@ -41,7 +41,7 @@ def Init_page(lien):
     driver.quit()
     return likns
 
-with open('Donnes.csv', 'w', newline='') as csvfile:
+with open('Donnes/Donnes.csv', 'w', newline='') as csvfile:
     spamwriter = csv.writer(csvfile, quotechar=' ', quoting=csv.QUOTE_ALL)
     # spamwriter.writerow(['Nom de l\'hôtel', 'Localisation', 'Nombre des étoiles d’hôtel' ,'Prix', 'Nombre d\'utilisateur','Excellent', 'Très bon','Moyen','Médiocre','Horrible','servies proposer', 'classe'])
 
@@ -144,7 +144,7 @@ def Scrape_pages(url):
     else:
         catprix = 3
 
-    with open('Donnes.csv', 'a', newline='') as csvfile:
+    with open('Donnes/Donnes.csv', 'a', newline='') as csvfile:
         spamwriter = csv.writer(csvfile)
         # spamwriter.writerow([h1.string,loca, nb_etoiles, prixf[0], nb_uti, suprAvis[0], suprAvis[1], suprAvis[2], suprAvis[3], suprAvis[4], infogenral,catprix])
         spamwriter.writerow([h1.string,loca, prixf[0], nb_uti, suprAvis[0], suprAvis[1], suprAvis[2], suprAvis[3], suprAvis[4], nb_etoiles,catprix])
