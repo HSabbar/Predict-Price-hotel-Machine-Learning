@@ -19,15 +19,7 @@ Nous avons utiliser d'abord l’algorithme `KNN` que nous avons vue durant le co
 
 ## Taux de réussite :
 
-
-
-<br>	
-	<ul>
-	<li>`KNeighborsClassifier :  0.8170731707317073`</li>
-	<li>`RandomForestClassifier :  0.8597560975609756`</li>
-	<li>`XGBClassifier :  0.8475609756097561`</li>
-	</ul>
-</br>
-
-	
-	
+```no-highlight
+KNeighborsClassifier :  0.8170731707317073
+RandomForestClassifier :  0.8597560975609756
+XGBClassifier :  0.8475609756097561
