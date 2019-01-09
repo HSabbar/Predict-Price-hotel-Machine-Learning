@@ -20,7 +20,7 @@ Nous avons utiliser d'abord l’algorithme `KNN` que nous avons vue durant le co
 ## Taux de réussite :
 
 
-`KNeighborsClassifier :  0.8170731707317073`
+
 <br>	
 	<ul>
 	<li>`KNeighborsClassifier :  0.8170731707317073`</li>
